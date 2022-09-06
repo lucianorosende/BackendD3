@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Auto",
+    "price": 200,
+    "description": "Auto grande con 4 ruedas",
+    "id": 1
+  },
+  {
+    "name": "Moto",
+    "price": 400,
+    "description": "Moto de 2 ruedas para 2 pasajeros",
+    "id": 2
+  },
+  {
+    "name": "Camion",
+    "price": 600,
+    "description": "Camion de 6 ruedas para 5 pasajeros",
+    "id": 3
+  },
+  {
+    "name": "Avion",
+    "price": 1000,
+    "description": "Avion con capacidad para 60 personas",
+    "id": 4
+  }
+]
