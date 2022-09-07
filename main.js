@@ -38,7 +38,7 @@ class Contenedor {
       let content = await fs.promises.readFile(route, "utf-8");
       let parseContent = JSON.parse(content);
       if (parseContent[num] === undefined) {
-        return null
+        return null;
       } else {
         return parseContent[num];
       }
@@ -49,6 +49,7 @@ class Contenedor {
 }
 const Container = new Contenedor(route);
 
+// Levanta el server
 app.listen(port, () => {
   console.log("server up");
 });
@@ -79,35 +80,22 @@ const Save = async () => {
   ]);
 };
 
-const Home = async () => {
-  // Home del port
-  app.get("/", (req, res) => {
-    res.send("Hola Emiliano! Este es el home");
-  });
-};
+// Home del port
+app.get("/", (req, res) => {
+  res.send("Hola Emiliano! Este es el home");
+});
 
-const getAll = async () => {
-  // Obtiene todos los productos en un JSON.parse y se coloca en productos
+// Obtiene todos los productos en un JSON.parse y se coloca en productos
+app.get("/productos", async (req, res) => {
   let content = await Container.getAll();
-  app.get("/productos", (req, res) => {
-    res.send(content);
-  });
-};
+  res.send(content);
+});
 
-const randomProduct = async () => {
-  // Obtiene un producto random con math.random y se coloca en productoRandom
-  let randomN = parseInt(Math.random() * 3 + 1);
+// Obtiene un producto random con math.random y se coloca en productoRandom
+app.get("/productoRandom", async (req, res) => {
+  let randomN = parseInt(Math.random() * 4 + 0);
   let content = await Container.getById(randomN);
-  app.get("/productoRandom", (req, res) => {
-    res.send(content);
-  });
-};
+  res.send(content);
+});
 
-const ejectAll = async () => {
-  await Save();
-  await Home();
-  await getAll();
-  await randomProduct();
-}
-
-ejectAll()
+Save();
